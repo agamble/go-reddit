@@ -85,6 +85,11 @@ func (c *Client) GetPopularSubreddits() ([]*Subreddit, error) {
 	return c.getSubreddits("popular")
 }
 
+// GetSubscribedSubreddits retrieves a listing of subreddits I'm subscribed to.
+func (c *Client) GetSubscribedSubreddits() ([]*Subreddit, error) {
+	return c.getSubreddits("mine/subscribed")
+}
+
 func (c *Client) getSubreddits(where string) ([]*Subreddit, error) {
 	url := fmt.Sprintf("%s/subreddits/%s.json", baseURL, where)
 	req, err := http.NewRequest("GET", url, nil)
